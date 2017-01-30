@@ -3,8 +3,6 @@
 #include <string>
 #include "resources.h"
 
-std::string wndClassName = "mainwnd";
-
 extern INT_PTR CALLBACK AbtDlgProc(HWND hwnd,
 							UINT msg,
 							WPARAM wParam,
@@ -23,6 +21,8 @@ int CALLBACK WinMain(HINSTANCE hInstance,
 	WNDCLASSEX wc;
 	HWND hwnd = NULL;
 	MSG msg;
+	
+	std::string wndClassName = "mainwnd";
 	
 	HICON hIcon = LoadIcon(GetModuleHandle(NULL),
 						   MAKEINTRESOURCE(IDI_ICON));
