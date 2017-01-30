@@ -3,6 +3,8 @@
 #include <string>
 #include "resources.h"
 
+static std::string wndClassName = "mainwnd";
+
 extern INT_PTR CALLBACK AbtDlgProc(HWND hwnd,
 							UINT msg,
 							WPARAM wParam,
@@ -21,8 +23,6 @@ int CALLBACK WinMain(HINSTANCE hInstance,
 	WNDCLASSEX wc;
 	HWND hwnd = NULL;
 	MSG msg;
-	
-	std::string wndClassName = "mainwnd";
 	
 	HICON hIcon = LoadIcon(GetModuleHandle(NULL),
 						   MAKEINTRESOURCE(IDI_ICON));
@@ -70,7 +70,7 @@ int CALLBACK WinMain(HINSTANCE hInstance,
 		return 0;
 	}
 	
-	ShowWindow(hwnd,nCmdShow);
+	ShowWindow(hwnd,SW_MAXIMIZE);
 	
 	BOOL retVal;
 	while((retVal = GetMessage(&msg,NULL,0,0)) != 0)
@@ -99,24 +99,6 @@ LRESULT CALLBACK WndProc(HWND hwnd,
 {
 	switch(msg)
 	{
-		case WM_CREATE:
-		{
-			RECT rect;
-			
-			const HWND hDesktop = GetDesktopWindow();
-			
-			GetWindowRect(hDesktop,&rect);
-			//TODO: Find taskbar orientation+taskbar w+h
-			
-			SetWindowPos(hwnd, 
-						 HWND_TOP,
-						 rect.left,
-						 rect.top,
-						 rect.right,
-						 rect.bottom,
-						 SWP_SHOWWINDOW);
-			break;
-		}
 		case WM_COMMAND:
 		{
 			switch(LOWORD(wParam))
