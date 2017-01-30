@@ -89,7 +89,7 @@ int CALLBACK WinMain(HINSTANCE hInstance,
 			DispatchMessage(&msg);
 		}
 	}
-	return 0;
+	return msg.wParam;
 }
 
 LRESULT CALLBACK WndProc(HWND hwnd,
@@ -121,6 +121,7 @@ LRESULT CALLBACK WndProc(HWND hwnd,
 		{
 			switch(LOWORD(wParam))
 			{
+				//Menu items
 				case ID_ABOUT:
 				{
 					DialogBox(NULL,
