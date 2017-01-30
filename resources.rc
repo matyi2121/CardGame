@@ -1,0 +1,31 @@
+#include <windows.h>
+#include "resources.h"
+
+IDI_ICON ICON "icon.ico"
+
+IDR_MAINMENU MENU
+BEGIN
+	POPUP "&Game"
+	BEGIN
+		MENUITEM "&Choose Deck",ID_CHOOSED
+	END
+	POPUP "&Deck"
+	BEGIN
+		MENUITEM "C&reate Deck",ID_CREATED
+		MENUITEM "&Edit Deck",ID_EDITD
+	END
+	POPUP "&Help"
+	BEGIN
+		MENUITEM "&About",ID_ABOUT
+	END
+END
+
+IDD_ABOUT DIALOG DISCARDABLE 0, 0, 239, 66
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 8, "MS Sans Serif"
+BEGIN
+	PUSHBUTTON "&OK",IDOK,174,18,50,14
+	GROUPBOX   "About",IDC_STATIC,7,7,225,52
+	CTEXT	   "This is a simple card game.",IDC_STATIC,16,18,144,33
+END
