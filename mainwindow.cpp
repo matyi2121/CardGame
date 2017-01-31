@@ -5,6 +5,11 @@
 
 static std::string wndClassName = "mainwnd";
 
+extern INT_PTR CALLBACK DeckDlgProc(HWND hwnd,
+							UINT msg,
+							WPARAM wParam,
+							LPARAM lParam);
+
 extern INT_PTR CALLBACK AbtDlgProc(HWND hwnd,
 							UINT msg,
 							WPARAM wParam,
@@ -23,6 +28,14 @@ int CALLBACK WinMain(HINSTANCE hInstance,
 	WNDCLASSEX wc;
 	HWND hwnd = NULL;
 	MSG msg;
+	
+	if(strcmp(lpCmdLine,""))
+	{
+		MessageBox(NULL,
+				   "This program doesn't use command line parameters!",
+				   "Information",
+				   MB_OK | MB_ICONINFORMATION);
+	}
 	
 	HICON hIcon = LoadIcon(GetModuleHandle(NULL),
 						   MAKEINTRESOURCE(IDI_ICON));
@@ -112,16 +125,16 @@ LRESULT CALLBACK WndProc(HWND hwnd,
 							  AbtDlgProc);
 					break;
 				}
-				case ID_CHOOSED:
+				case ID_PVSAI:
 				{
 					break;
 				}
-				case ID_CREATED:
+				case ID_CREATE_EDITDECK:
 				{
-					break;
-				}
-				case ID_EDITD:
-				{
+					DialogBox(NULL,
+							  MAKEINTRESOURCE(IDD_CREATE_EDITDECK),
+							  hwnd,
+							  DeckDlgProc);
 					break;
 				}
 			}
